@@ -21,14 +21,6 @@ describe Oystercard do
     end
   end
 
-  describe '#deduct' do
-    it 'deducts money from the balance' do
-      subject.top_up(10)
-      subject.deduct(5)
-      expect(subject.balance).to eq 5
-    end
-  end
-
   describe '#in_journey' do
     it 'should not be in journey at the creation' do
       expect(subject).not_to be_in_journey
@@ -38,7 +30,8 @@ describe Oystercard do
       expect(subject).to be_in_journey
     end
     it 'should not be in jouney after both touch_in and touch_out' do
-      subject.touch_in && subject.touch_out
+      subject.touch_in
+      subject.touch_out(0)
       expect(subject).not_to be_in_journey
     end
   end

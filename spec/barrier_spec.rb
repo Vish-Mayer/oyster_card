@@ -14,9 +14,8 @@ describe Barrier do
     end
 
     describe '#touch_out' do
-      it "to change journey status of the card to false" do
-        subject.touch_in(card)
-        expect(subject.touch_out(card)).to eq false
+      it 'deduct the minimum fare on touch out' do
+        expect { subject.touch_out(card) }.to change{ card.balance }.by(-Barrier::MINIMUM_CHARGE)
       end
     end
   end
