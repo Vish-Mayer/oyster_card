@@ -28,4 +28,18 @@ describe Oystercard do
       expect(subject.balance).to eq 5
     end
   end
+
+  describe '#in_journey' do
+    it 'should not be in journey at the creation' do
+      expect(subject).not_to be_in_journey
+    end
+    it 'should be in journey after touch_in' do
+      subject.touch_in
+      expect(subject).to be_in_journey
+    end
+    it 'should not be in jouney after both touch_in and touch_out' do
+      subject.touch_in && subject.touch_out
+      expect(subject).not_to be_in_journey
+    end
+  end
 end
